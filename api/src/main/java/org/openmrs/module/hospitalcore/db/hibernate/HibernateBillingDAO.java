@@ -1072,7 +1072,8 @@ public class HibernateBillingDAO implements BillingDAO {
 			throws DAOException {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				BillableService.class);
-		criteria.add(Restrictions.eq("name", conceptName));
+		//criteria.add(Restrictions.eq("name", conceptName));
+		criteria.add(Restrictions.eq("conceptId", Context.getConceptService().getConcept(conceptName).getConceptId()));
 		return (BillableService) criteria.uniqueResult();
 	}
 
